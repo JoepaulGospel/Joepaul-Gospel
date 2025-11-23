@@ -1,0 +1,5 @@
+{
+  "name": "VibeWall",
+  "description": "A mobile-first web app for generating unique phone wallpapers. Describe your desired vibe, and the app generates four stunning variations in a 9:16 aspect ratio. View images full screen, download your favorites, or remix them to explore new creative directions.",
+  "requestFramePermissions": []
+}
