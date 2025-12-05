@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { SparklesIcon } from './icons/SparklesIcon';
 
@@ -35,7 +34,8 @@ const PromptInput: React.FC<PromptInputProps> = ({ prompt, setPrompt, onGenerate
             className="absolute right-1.5 top-1/2 -translate-y-1/2 flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-700 disabled:cursor-not-allowed text-white font-semibold py-2 px-4 rounded-full transition-all"
           >
             <SparklesIcon className="w-5 h-5" />
-            <span className="hidden sm:inline">{isLoading ? 'Generating...' : 'Generate'}</span>
+            {/* CHANGED TO ELON MODE FOR DIAGNOSTIC TEST */}
+            <span className="hidden sm:inline">{isLoading ? 'Creating...' : 'ELON MODE'}</span>
           </button>
         </div>
       </div>
