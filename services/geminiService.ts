@@ -1,38 +1,13 @@
+export const generateImage = async (prompt: string): Promise<string> => {
+  console.log("Generating image for prompt:", prompt);
+  
+  // Encode the prompt to make it URL-safe
+  const encodedPrompt = encodeURIComponent(prompt);
+  
+  // Construct the URL. We add a random seed to make sure it's different every time.
+  const randomSeed = Math.floor(Math.random() * 10000);
+  const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?seed=${randomSeed}&width=1080&height=1920&nologo=true`;
 
-import { GoogleGenAI } from "@google/genai";
-import { GeneratedImage } from '../types';
-
-if (!process.env.API_KEY) {
-  throw new Error("API_KEY environment variable not set");
-}
-
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
-export const generateWallpapers = async (prompt: string): Promise<GeneratedImage[]> => {
-  try {
-    const response = await ai.models.generateImages({
-      model: 'imagen-4.0-generate-001',
-      prompt: `${prompt}, 9:16 aspect ratio, phone wallpaper, high quality, stunning detail`,
-      config: {
-        numberOfImages: 4,
-        outputMimeType: 'image/jpeg',
-        aspectRatio: '9:16',
-      },
-    });
-
-    if (!response.generatedImages || response.generatedImages.length === 0) {
-      throw new Error("No images were generated. The prompt may have been blocked.");
-    }
-    
-    return response.generatedImages.map((img, index) => ({
-        id: `img-${Date.now()}-${index}`,
-        base64: img.image.imageBytes,
-    }));
-  } catch (error) {
-    console.error("Error generating wallpapers:", error);
-    if (error instanceof Error) {
-        throw new Error(`Failed to generate images: ${error.message}`);
-    }
-    throw new Error("An unknown error occurred during image generation.");
-  }
+  // Return the URL directly. The browser will load it.
+  return imageUrl;
 };
